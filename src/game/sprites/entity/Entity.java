@@ -1,5 +1,15 @@
 package game.sprites.entity;
 
-public class Entity {
+import java.awt.*;
 
+public abstract class Entity {
+
+    int health;
+    double angle;
+
+    public double getAngle() {
+        return angle;
+    }
+
+    public abstract void render(Graphics g);
 }
