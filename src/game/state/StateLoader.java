@@ -1,25 +1,38 @@
 package game.state;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 public class StateLoader {
 
-    private State state;
+    private State currentState;
 
     public StateLoader(State s) {
-        this.state = s;
+        currentState = s;
     }
 
     public void loadState(State s) {
-        this.state = s;
+        currentState = s;
     }
 
     public void render(Graphics g) {
-        state.render(g);
+        currentState.render(g);
     }
 
     public void tick() {
-        state.tick();
+        currentState.tick();
+    }
+
+    public void processMouseEvent(MouseEvent me) {
+        currentState.processMouseEvent(me);
+    }
+
+    public void processKeyEventPress(KeyEvent ke) {
+        currentState.processKeyEventPress(ke);
+    }
+    public void processKeyEventRelease(KeyEvent ke) {
+        currentState.processKeyEventRelease(ke);
     }
 
 }
