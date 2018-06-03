@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferStrategy;
 
-public class Main extends Canvas {
+public class Game extends Canvas {
 
     public static final int WIDTH = 1000;
     public static final int HEIGHT = 750;
@@ -26,7 +26,7 @@ public class Main extends Canvas {
 
             @Override
             public void mouseMoved(MouseEvent e) {
-                MainInfo.getInstance().setMouseP(new Location(e.getX(), e.getY()));
+                GameInfo.getInstance().setMouseP(new Location(e.getX(), e.getY()));
             }
         });
         this.addMouseListener(new MouseListener() {
@@ -118,16 +118,16 @@ public class Main extends Canvas {
     public static void main(String[] args){
         System.setProperty("sun.java2d.opengl", "true");
         JFrame frame = new JFrame("Rising Dead");
-        Main main = new Main();
-        main.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        main.setBackground(new Color(117, 214, 57));
+        Game game = new Game();
+        game.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        game.setBackground(new Color(67, 154, 7));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(false);
-        frame.add(main);
+        frame.add(game);
         frame.pack();
         frame.setVisible(true);
-        main.start();
+        game.start();
     }
 
 }
