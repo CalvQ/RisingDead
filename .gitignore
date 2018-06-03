@@ -1,2 +1,4 @@
 .idea
 RisingDead.iml
+out
+.DS_Store

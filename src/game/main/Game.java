@@ -1,12 +1,14 @@
 package game.main;
 
 import game.sprites.Location;
+import game.state.MenuState;
 import game.state.State;
 import game.state.StateLoader;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferStrategy;
 
 public class Main extends Canvas {
 
@@ -14,7 +16,7 @@ public class Main extends Canvas {
     public static final int HEIGHT = 750;
 
     private boolean running;
-    private StateLoader loader;
+    private static StateLoader loader;
 
     private void start(){
         loader = new StateLoader(new MenuState());
@@ -24,7 +26,7 @@ public class Main extends Canvas {
 
             @Override
             public void mouseMoved(MouseEvent e) {
-                GameInfo.getInstance().setMouseP(new Location(e.getX(), e.getY()));
+                MainInfo.getInstance().setMouseP(new Location(e.getX(), e.getY()));
             }
         });
         this.addMouseListener(new MouseListener() {
@@ -66,7 +68,22 @@ public class Main extends Canvas {
     }
 
     public static void loadState(State s){
-        loader.load(s);
+        loader.loadState(s);
+    }
+
+    private void render() {
+        BufferStrategy bs = getBufferStrategy();
+        if(bs == null) {
+            createBufferStrategy(3);
+            return;
+        }
+        Graphics g = bs.getDrawGraphics();
+
+        g.clearRect(0, 0, WIDTH, HEIGHT);
+        loader.render(g);
+
+        g.dispose();
+        bs.show();
     }
 
     private void run(){
@@ -100,7 +117,7 @@ public class Main extends Canvas {
 
     public static void main(String[] args){
         System.setProperty("sun.java2d.opengl", "true");
-        JFrame frame = new JFrame("Last Stand");
+        JFrame frame = new JFrame("Rising Dead");
         Main main = new Main();
         main.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         main.setBackground(new Color(117, 214, 57));
