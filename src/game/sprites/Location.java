@@ -26,6 +26,14 @@ public class Location {
         this.y = dy;
     }
 
+    public double diffX(Location loc) {
+        return this.x - loc.getX();
+    }
+
+    public double diffY(Location loc) {
+        return this.y - loc.getY();
+    }
+
     @Override
     public boolean equals(Object obj) {
         if(obj instanceof Location) {
