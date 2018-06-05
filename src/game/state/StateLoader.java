@@ -35,4 +35,10 @@ public class StateLoader {
         currentState.processKeyEventRelease(ke);
     }
 
+    public void processMouseHold(MouseEvent e) {
+        currentState.processMouseHold(e);
+    }
+    public void processMouseRelease(MouseEvent e) {
+        currentState.processMouseRelease(e);
+    }
 }

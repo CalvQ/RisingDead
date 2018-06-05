@@ -1,7 +1,5 @@
 package game.state;
 
-import game.main.Game;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -22,6 +20,10 @@ public abstract class State {
     public abstract void processKeyEventPress(KeyEvent ke);
 
     public abstract void processKeyEventRelease(KeyEvent ke);
+
+    public abstract void processMouseHold(MouseEvent e);
+
+    public abstract void processMouseRelease(MouseEvent e);
 
     private static void initImages() {
         try {

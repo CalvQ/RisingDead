@@ -36,10 +36,10 @@ public class Game extends Canvas {
             }
 
             @Override
-            public void mousePressed(MouseEvent e) {}
+            public void mousePressed(MouseEvent e) {loader.processMouseHold(e);}
 
             @Override
-            public void mouseReleased(MouseEvent e) {}
+            public void mouseReleased(MouseEvent e) {loader.processMouseRelease(e);}
 
             @Override
             public void mouseEntered(MouseEvent e) {}
