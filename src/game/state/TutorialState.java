@@ -26,4 +26,12 @@ public class TutorialState extends State {
 
     }
 
+    public void processMouseHold(MouseEvent e) {
+
+    }
+
+    public void processMouseRelease(MouseEvent e) {
+
+    }
+
 }
