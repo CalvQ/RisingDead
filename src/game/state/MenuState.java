@@ -14,6 +14,7 @@ public class MenuState extends State {
 
     private static Image play, tutorial, title;
     private static Image playH, tutorialH;
+    private static Image skull;
     private boolean hPlay, hTutorial;
 
     private void initImages() {
@@ -23,21 +24,27 @@ public class MenuState extends State {
             title = ImageIO.read(getClass().getResource("/title.png"));
             playH = ImageIO.read(getClass().getResource("/playH.png"));
             tutorialH = ImageIO.read(getClass().getResource("/tutorialH.png"));
+            skull = ImageIO.read(getClass().getResource("/skull.png"));
         }catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public MenuState() {
-        Music.initSongs();
-        initImages();
-        Music.playMusic();
+        if(play == null) {
+            Music.initSongs();
+            initImages();
+            GameState.initImages();
+        }
     }
 
     public void render(Graphics g) {
         State.drawBackground(g, "grey");
 
         g.drawImage(title, Game.WIDTH/2 - 400, 50, 800, 300, null);
+
+        g.drawImage(skull, Game.WIDTH - 186, Game.HEIGHT/2 + 50, null);
+        g.drawImage(skull, 50, Game.HEIGHT/2 + 50, null);
 
         if(hPlay) {
             g.drawImage(playH, Game.WIDTH / 2 - 125, Game.HEIGHT / 2 - 40, 250, 200, null);
@@ -56,8 +63,8 @@ public class MenuState extends State {
         int x = (int) GameInfo.getInstance().getMouseX();
         int y = (int) GameInfo.getInstance().getMouseY();
 
-        hPlay = x >= Game.WIDTH / 2 - 125 && x <= Game.WIDTH / 2 + 125 && y >= Game.HEIGHT / 2 - 40 && y <= Game.HEIGHT / 2 + 100;
-        hTutorial = x >= Game.WIDTH / 2 - 222 && x <= Game.WIDTH / 2 + 222 && y >= Game.HEIGHT / 2 + 100 && y <= Game.HEIGHT / 2 + 300;
+        hPlay = x >= Game.WIDTH / 2 - 125 && x <= Game.WIDTH / 2 + 125 && y >= Game.HEIGHT / 2 - 40 && y <= Game.HEIGHT / 2 + 80;
+        hTutorial = x >= Game.WIDTH / 2 - 222 && x <= Game.WIDTH / 2 + 222 && y >= Game.HEIGHT / 2 + 100 && y <= Game.HEIGHT / 2 + 220;
     }
 
     public void processMouseEvent(MouseEvent me) {
@@ -75,6 +82,14 @@ public class MenuState extends State {
     }
 
     public void processKeyEventRelease(KeyEvent ke) {
+
+    }
+
+    public void processMouseHold(MouseEvent e) {
+
+    }
+
+    public void processMouseRelease(MouseEvent e) {
 
     }
 
