@@ -2,6 +2,7 @@ package game.state;
 
 import game.main.Game;
 import game.main.GameInfo;
+import game.main.Music;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -84,10 +85,16 @@ public class ConnectState extends State{
         highL = x >= 0 && x <= 36 && y >= 0 && y <= 30;
         highR = x >= Game.WIDTH - 36 && x <= Game.WIDTH && y >= 0 && y <= 30;
 
+        if(Music.isNotRunning()) {
+            Music.playMusic();
+        }
+
         if(cont) {
+            GameState.initImages();
             GameState gs = new GameState(name);
             gs.genTerrain();
             Game.loadState(gs);
+            Music.setMode(Music.Mode.GAME);
         }
     }
 

@@ -34,7 +34,7 @@ public class MenuState extends State {
         if(play == null) {
             Music.initSongs();
             initImages();
-            GameState.initImages();
+            Music.playMusic();
         }
     }
 
@@ -65,6 +65,10 @@ public class MenuState extends State {
 
         hPlay = x >= Game.WIDTH / 2 - 125 && x <= Game.WIDTH / 2 + 125 && y >= Game.HEIGHT / 2 - 40 && y <= Game.HEIGHT / 2 + 80;
         hTutorial = x >= Game.WIDTH / 2 - 222 && x <= Game.WIDTH / 2 + 222 && y >= Game.HEIGHT / 2 + 100 && y <= Game.HEIGHT / 2 + 220;
+
+        if(Music.isNotRunning()) {
+            Music.playMusic();
+        }
     }
 
     public void processMouseEvent(MouseEvent me) {

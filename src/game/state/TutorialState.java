@@ -1,5 +1,7 @@
 package game.state;
 
+import game.main.Music;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -12,6 +14,9 @@ public class TutorialState extends State {
 
     public void tick() {
 
+        if(Music.isNotRunning()) {
+            Music.playMusic();
+        }
     }
 
     public void processMouseEvent(MouseEvent me) {

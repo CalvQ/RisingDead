@@ -1,10 +1,8 @@
 package game.state;
 
-import game.sprites.Empty;
-import game.sprites.Location;
+import game.main.Music;
 import game.sprites.entity.Player;
 import game.sprites.environment.Map;
-import game.sprites.environment.Rock;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -14,6 +12,7 @@ public class GameState extends State {
 
     private Player player;
     private Image bodyP, bodyE;
+    private boolean left, up, right, down;
     private Image[] guns = new Image[0];//Get number of guns?
     private Map m;
 
@@ -36,6 +35,9 @@ public class GameState extends State {
 
     public void tick() {
 
+        if(Music.isNotRunning()) {
+            Music.playMusic();
+        }
     }
 
     public void processMouseEvent(MouseEvent me) {
@@ -43,7 +45,21 @@ public class GameState extends State {
     }
 
     public void processKeyEventPress(KeyEvent ke) {
-
+        int code = ke.getKeyCode();
+        switch (code){
+            case 65:
+                left = true;
+                break;
+            case 87:
+                up = true;
+                break;
+            case 68:
+                right = true;
+                break;
+            case 83:
+                down = true;
+                break;
+        }
     }
 
     public void processKeyEventRelease(KeyEvent ke) {
