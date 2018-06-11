@@ -78,6 +78,7 @@ public class MenuState extends State {
 
         if(hTutorial) {
             Game.loadState(new TutorialState());
+            Music.setMode(Music.Mode.TUTORIAL);
         }
     }
 
