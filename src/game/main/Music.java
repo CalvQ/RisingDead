@@ -6,7 +6,7 @@ import java.io.IOException;
 public class Music {
 
     public enum Mode {
-        MENU, GAME
+        MENU, TUTORIAL, GAME
     }
 
     private final static String[] songs = new String[1];
@@ -24,6 +24,9 @@ public class Music {
             switch (mode) {
                 case MENU:
                     clip.open(AudioSystem.getAudioInputStream(Music.class.getResource("/songs/Menu.wav")));
+                    break;
+                case TUTORIAL:
+                    clip.open(AudioSystem.getAudioInputStream(Music.class.getResource("/songs/Throwdown.wav")));
                     break;
                 case GAME:
                     //random generate an index
