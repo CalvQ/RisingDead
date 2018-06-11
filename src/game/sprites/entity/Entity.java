@@ -1,5 +1,7 @@
 package game.sprites.entity;
 
+import game.sprites.Location;
+
 import java.awt.*;
 
 public abstract class Entity {
@@ -11,6 +13,6 @@ public abstract class Entity {
         return angle;
     }
 
-    public abstract void render(Graphics g);
+    public abstract void render(Graphics g, Location l);
 
 }

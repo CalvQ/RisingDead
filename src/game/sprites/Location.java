@@ -35,6 +35,11 @@ public class Location {
     }
 
     @Override
+    public String toString() {
+        return x + " , " + y;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if(obj instanceof Location) {
             return ((Location) obj).getX() == this.x && ((Location) obj).getY() == this.y;
