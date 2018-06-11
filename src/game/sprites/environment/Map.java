@@ -1,8 +1,11 @@
 package game.sprites.environment;
 
+import game.main.Game;
 import game.sprites.Empty;
 import game.sprites.Location;
 import game.sprites.entity.Player;
+
+import java.awt.*;
 
 public class Map {
 
@@ -10,9 +13,16 @@ public class Map {
     public static final int HEIGHT = 10000;
 
     private Player player;
+    private Rock[] rocks = new Rock[500];
 
     public Map(Player p) {
         player = p;
+    }
+
+    public void render(Graphics g, Location l) {
+        for(Rock r:rocks) {
+            r.render(g, l);
+        }
     }
 
     public void genTerrain() {
@@ -26,13 +36,13 @@ public class Map {
         while(numRocks < 500) {
             int randR = ((int) (Math.random() * tiles.length));
             int randC = ((int) (Math.random() * tiles[randR].length));
-            System.out.println(tiles[randR][randC]);
             temp++;
             if(tiles[randR][randC] == null){
                 size = Rock.Size.values()[(int) (Math.random()*3)];
                 tiles[randR][randC] = new Rock(size, new Location(randC * 10 + 5, randR * 10 + 5));
+                rocks[numRocks] = (Rock) tiles[randR][randC];
                 switch (size) {
-                    case small:
+                    case SMALL:
                         for(int r = -1; r < 2; r++) {
                             for(int c = -1; c < 2; c++) {
                                 if(r == 0 && c == 0) {
@@ -46,7 +56,7 @@ public class Map {
                             }
                         }
                         break;
-                    case medium:
+                    case MEDIUM:
                         for(int r = -2; r < 3; r++) {
                             for(int c = -2; c < 3; c++) {
                                 if(r == 0 && c == 0) {
@@ -60,7 +70,7 @@ public class Map {
                             }
                         }
                         break;
-                    case large:
+                    case LARGE:
                         for(int r = -3; r < 4; r++) {
                             for(int c = -3; c < 4; c++) {
                                 if(r == 0 && c == 0) {
