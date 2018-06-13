@@ -12,16 +12,11 @@ public class GameState extends State {
 
     private Player player;
     private boolean left, up, right, down;
-    private Image[] guns = new Image[0];//Get number of guns?
     private Map m;
 
     public GameState(String name) {
         player = new Player(name);
         m = new Map(player);
-    }
-
-    public static void initImages() {
-
     }
 
     public void genTerrain() {
@@ -60,6 +55,7 @@ public class GameState extends State {
 
     public void processKeyEventPress(KeyEvent ke) {
         int code = ke.getKeyCode();
+        System.out.println(code);
         switch (code){
             case 65:
                 left = true;
@@ -72,6 +68,10 @@ public class GameState extends State {
                 break;
             case 83:
                 down = true;
+            case 81:
+                player.shiftInvDown();
+            case 69:
+                player.shiftInvUp();
                 break;
         }
     }
