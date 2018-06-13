@@ -1,5 +1,6 @@
 package game.state;
 
+import game.main.Game;
 import game.main.Music;
 import game.sprites.entity.Player;
 import game.sprites.environment.Map;
@@ -23,9 +24,28 @@ public class GameState extends State {
         m.genTerrain();
     }
 
+    private void drawInv(Graphics g) {
+        g.setColor(Color.BLACK);
+
+        g.fillRect(Game.WIDTH - 262, Game.HEIGHT - 54, 262, 2);
+        g.fillRect(Game.WIDTH - 262, Game.HEIGHT - 2, 262, 2);
+
+        g.setFont(new Font("Comic Sans MS", Font.BOLD, 10));
+        int temp;
+
+        for(int i=0; i<6; i++) {
+            g.fillRect(Game.WIDTH - 262 + (i * 52), Game.HEIGHT - 52, 2, 50);
+            if(i < 5) {
+                temp = i+1;
+                g.drawString(temp + "", Game.WIDTH - 258 + (i * 52), Game.HEIGHT - 43);
+            }
+        }
+    }
+
     public void render(Graphics g) {
         player.render(g, player.getLoc());
         m.render(g, player.getLoc());
+        drawInv(g);
     }
 
     public void tick() {
@@ -55,7 +75,6 @@ public class GameState extends State {
 
     public void processKeyEventPress(KeyEvent ke) {
         int code = ke.getKeyCode();
-        System.out.println(code);
         switch (code){
             case 65:
                 left = true;
