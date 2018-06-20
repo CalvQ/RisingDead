@@ -39,4 +39,5 @@ public abstract class State {
         }
         g.drawImage(backgrounds.get(color), 0, 0, null);
     }
+
 }

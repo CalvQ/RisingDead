@@ -3,6 +3,7 @@ package game.state;
 import game.main.Game;
 import game.main.GameInfo;
 import game.main.Music;
+import game.sprites.entity.inventory.Item;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -90,9 +91,10 @@ public class ConnectState extends State{
         }
 
         if(cont) {
-            GameState.initImages();
+//            GameState.initImages(); TODO
             GameState gs = new GameState(name);
             gs.genTerrain();
+            Item.initImages();
             Game.loadState(gs);
             Music.setMode(Music.Mode.GAME);
         }
