@@ -6,6 +6,8 @@ import java.awt.*;
 
 public abstract class Gun extends Item {
 
+    static Image gun, icon;
+
     public void useOne() {
         fire();
     }
@@ -13,5 +15,9 @@ public abstract class Gun extends Item {
     public abstract void fire();
 
     public abstract void render(Graphics g, double angle);
+
+    public Image getIcon() {
+        return icon;
+    }
 
 }

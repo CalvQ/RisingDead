@@ -8,12 +8,18 @@ import java.io.IOException;
 
 public class TestGun extends Gun {
 
-    private static Image gun;
-
     public void initImage() {
         if(gun == null) {
             try {
                 gun = ImageIO.read(TestGun.class.getResource("/ClipGun.png"));
+            }catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(icon == null) {
+            try {
+                icon = ImageIO.read(TestGun.class.getResource("/guns/AWP.png"));
             }catch (IOException e) {
                 e.printStackTrace();
             }

@@ -25,11 +25,15 @@ public class GameState extends State {
     }
 
     private void drawInv(Graphics g) {
+        player.drawInv(g);
+
+        //draw squares
         g.setColor(Color.BLACK);
 
         g.fillRect(Game.WIDTH - 262, Game.HEIGHT - 54, 262, 2);
         g.fillRect(Game.WIDTH - 262, Game.HEIGHT - 2, 262, 2);
 
+        //label and draw squares
         g.setFont(new Font("Comic Sans MS", Font.BOLD, 10));
         int temp;
 
@@ -42,26 +46,31 @@ public class GameState extends State {
         }
     }
 
+    private void drawBloom(Graphics g) {
+
+    }
+
     public void render(Graphics g) {
         player.render(g, player.getLoc());
         m.render(g, player.getLoc());
         drawInv(g);
+        drawBloom(g);
     }
 
     public void tick() {
         player.tick();
 
         if(left) {
-            player.moveX(-5);
+            player.moveX(-1);
         }
         if(right) {
-            player.moveX(5);
+            player.moveX(1);
         }
         if(up) {
-            player.moveY(-5);
+            player.moveY(-1);
         }
         if(down) {
-            player.moveY(5);
+            player.moveY(1);
         }
 
         if(Music.isNotRunning()) {
@@ -87,8 +96,10 @@ public class GameState extends State {
                 break;
             case 83:
                 down = true;
+                break;
             case 81:
                 player.shiftInvDown();
+                break;
             case 69:
                 player.shiftInvUp();
                 break;
