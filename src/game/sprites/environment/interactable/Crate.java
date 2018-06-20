@@ -10,6 +10,7 @@ public class Crate implements Interactable{
 
     public Crate(Location l) {
         loc = l;
+        item = Item.randItem();
     }
 
     public boolean inProx(Location l) {

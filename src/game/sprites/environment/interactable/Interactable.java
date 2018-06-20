@@ -1,4 +1,10 @@
 package game.sprites.environment.interactable;
 
-public class Interactable {
+import game.sprites.Location;
+
+public interface Interactable{
+
+    public boolean inProx(Location l);
+    public void interact();
+
 }
