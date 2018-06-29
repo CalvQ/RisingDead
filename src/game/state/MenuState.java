@@ -93,6 +93,8 @@ public class MenuState extends State {
     }
 
     public void processMouseEvent(MouseEvent me) {
+        float x = (float) GameInfo.getInstance().getMouseX();
+
         if(hPlay) {
             Game.loadState(new ConnectState());
         }
@@ -101,14 +103,14 @@ public class MenuState extends State {
             Game.loadState(new TutorialState());
             Music.setMode(Music.Mode.TUTORIAL);
         }
-    }
-
-    public void processKeyEventPress(KeyEvent ke) {
-        float x = (float) GameInfo.getInstance().getMouseX();
 
         if(hSpeak && x >= 60 && x <= 360) {
             GameInfo.getInstance().setVol((x-60)/300);
         }
+    }
+
+    public void processKeyEventPress(KeyEvent ke) {
+
     }
 
     public void processKeyEventRelease(KeyEvent ke) {
