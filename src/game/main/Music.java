@@ -13,6 +13,9 @@ public class Music {
     private static Clip clip;
     private static Mode mode = Mode.MENU;
 
+    private static FloatControl gainControl;
+    private static float volume; //0.0-1.0
+
     public static void initSongs() {
         songs[0] = "Necromancy.wav";
     }
@@ -46,6 +49,15 @@ public class Music {
         clip.stop();
         clip = null;
         playMusic();
+    }
+
+    public static void updateVolume() {
+        volume = GameInfo.getInstance().getVol();
+        gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+
+        float range = gainControl.getMaximum() - gainControl.getMinimum();
+        float gain = (range * volume) + gainControl.getMinimum();
+        gainControl.setValue(gain);
     }
 
     public static boolean isNotRunning() {

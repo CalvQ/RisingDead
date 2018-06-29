@@ -5,6 +5,7 @@ import game.sprites.Location;
 public class GameInfo {
     private static GameInfo ourInstance = new GameInfo();
 
+    private static float volume = 1.0f; //0.0f-1.0f
     private Location mouseP;
 
     public static GameInfo getInstance() {
@@ -12,6 +13,15 @@ public class GameInfo {
     }
 
     private GameInfo() {
+    }
+
+    public void setVol(float x) {
+        volume = x;
+        Music.updateVolume();
+    }
+
+    public float getVol() {
+        return volume;
     }
 
     public void setMouseP(Location l) {
