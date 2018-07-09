@@ -5,6 +5,7 @@ import game.main.GameInfo;
 import game.sprites.Location;
 import game.sprites.entity.inventory.Item;
 import game.sprites.entity.inventory.gun.AWP;
+import game.sprites.entity.inventory.gun.Gun;
 import game.sprites.entity.inventory.gun.TestGun;
 import game.sprites.environment.Map;
 
@@ -39,7 +40,7 @@ public class Player extends Entity {
         name = n;
 
         //TODO - REMOVE
-        inventory[0] = new TestGun();
+        inventory[1] = new AWP();
     }
 
     public Location getLoc() {
@@ -56,6 +57,10 @@ public class Player extends Entity {
 
     public void setInventory(int inv) {
         invSelection = inv;
+    }
+
+    public void fire(){
+        inventory[invSelection].useOne();
     }
 
     public void shiftInvUp() {
@@ -76,6 +81,9 @@ public class Player extends Entity {
 
     public void tick() {
         angle = Math.atan2(GameInfo.getInstance().getMouseY() - Game.HEIGHT/2, GameInfo.getInstance().getMouseX() - Game.WIDTH/2);
+        if(inventory[invSelection] instanceof Gun) {
+            ((Gun) (inventory[invSelection])).tick();
+        }
     }
 
     private void drawHand(Graphics g) {

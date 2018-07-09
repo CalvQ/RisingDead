@@ -6,7 +6,16 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
 
-public class TestGun extends Gun {
+public class M16 extends Gun{
+
+
+    public void fire() {
+
+    }
+
+    public void tick() {
+
+    }
 
     public void initImage() {
         if(gun == null) {
@@ -19,27 +28,18 @@ public class TestGun extends Gun {
 
         if(icon == null) {
             try {
-                icon = ImageIO.read(TestGun.class.getResource("/guns/PixelArt (4).png"));
+                icon = ImageIO.read(TestGun.class.getResource("/guns/AWP.png"));
             }catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public void fire() {
-        System.out.println("here");
-    }
-
-    public void tick() {
-
-    }
-
-    public void render(Graphics g, double angle) {
+    public void render(Graphics g, double angle) {//TODO
         g.translate(Game.WIDTH/2, Game.HEIGHT/2);
         ((Graphics2D)g).rotate(angle);
         g.drawImage(gun, 10, -3, 60, 7, null);
         ((Graphics2D)g).rotate(-angle);
         g.translate(-Game.WIDTH/2, -Game.HEIGHT/2);
     }
-
 }

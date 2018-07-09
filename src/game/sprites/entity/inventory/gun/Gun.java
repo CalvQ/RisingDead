@@ -6,11 +6,15 @@ import java.awt.*;
 
 public abstract class Gun extends Item {
 
+    int cd;
+
     static Image gun, icon;
 
     public void useOne() {
         fire();
     }
+
+    public abstract void tick();
 
     public abstract void fire();
 
